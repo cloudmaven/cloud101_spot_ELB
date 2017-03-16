@@ -1,7 +1,7 @@
 ---
 title: "Introduction to the AWS console & provisioning an EC2 instance"
-teaching: 15
-exercises: 0
+teaching: 0
+exercises: 30
 questions:
 - "How do I build a virtual machine in AWS?"
 - "How do I use my virtual machine to transfer data to an S3 bucket"
