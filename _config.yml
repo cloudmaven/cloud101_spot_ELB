@@ -7,7 +7,7 @@ encoding: utf-8
 kind: "lesson"
 
 # Overall title for pages.
-title: "Cloud 101 Webframework Tutorial"
+title: "Cloud 101 Introduction to the various cloud providers"
 
 # Repository URL (without trailing slash).
 repo: https://github.com/cloudmaven/cloud101_cloudproviders
