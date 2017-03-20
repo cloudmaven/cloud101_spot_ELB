@@ -15,6 +15,18 @@ keypoints:
 
 ---
 
+### Prerequisites
+[AWS Educate Starter Account](https://www.awseducate.com/Application)
+A 2-factor authentication app (e.g. Authy ) 
+
+### Create an IAM user
+For security, you should not log in to your account using root credentials. Anything that you need to do with your AWS services can be achieved by creating an Administrator role through IAM. You only need root access for managing your account plans (upgrades or closing your account)
+
+There are two parts to ensuring security of your account. One is enabling Multi-Factor Authentication to log on as root, and installing yourself as the first ~~All-Supreme Being~~ Administrator. 
+
+** Participants will have 5 minutes to set up the MFA Authentication **
+
+
 ### Launch an AWS EC2 Instance
 
 ### Create a s3 storage bucket
