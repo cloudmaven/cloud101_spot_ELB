@@ -24,12 +24,71 @@ For security, you should not log in to your account using root credentials. Anyt
 
 There are two parts to ensuring security of your account. One is enabling Multi-Factor Authentication to log on as root, and installing yourself as the first ~~All-Supreme Being~~ Administrator. 
 
-** Participants will have 5 minutes to set up the MFA Authentication **
-
+More information is available [here](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/get-set-up-for-amazon-ec2.html)
 
 ### Launch an AWS EC2 Instance
+*This tutorial was adapted from the [AWS EC2 Instance Starter Guide](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html) and https://cloudmaven.github.io/documentation/aws_ec2.html
+
+Step 1: Launch an Instance
+
+You can launch a Linux instance using the AWS Management Console as described in the following procedure. This tutorial is intended to help you launch your first instance quickly, so it doesn't cover all possible options. For more information about the advanced options, see Launching an Instance.
+
+To launch an instance
+
+Open the Amazon EC2 console at https://console.aws.amazon.com/ec2/.
+Participants on our accounts should use: https://uwcloudczar.signin.aws.amazon.com/console and log on with the given username and password. You will be prompted to change your password. 
+
+From the console dashboard, choose Launch Instance.
+
+The Choose an Amazon Machine Image (AMI) page displays a list of basic configurations, called Amazon Machine Images (AMIs), that serve as templates for your instance. We will be setting up an Ubuntu 16.04 virtual machine. 
+
+![](/cloud101_cloudproviders/fig/01-aws-intro-0001.png)
+
+On the Choose an Instance Type page, you can select the hardware configuration of your instance. Here, we will select the t2.small type
+
+![](/cloud101_cloudproviders/fig/01-aws-intro-0002.png)
+
+![](/cloud101_cloudproviders/fig/01-aws-intro-0003.png)
+
+![](/cloud101_cloudproviders/fig/01-aws-intro-0004.png)
+
+
+You can also add storage to your virtual machine. We won't be covering this in the workshop, but the directions on how to mount the additional storage to your virtual machine is [here](https://cloudmaven.github.io/documentation/aws_ec2.html#mounting-the-attached-volume). 
+
+![](/cloud101_cloudproviders/fig/01-aws-intro-0005.png)
+
+You can add Tags to your EC2 to help with identify your resource for things like billing etc. For example, you can specify Machine Name, Owner, Group, etc. More info [here](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Using_Tags.html#tag-basics).
+
+![](/cloud101_cloudproviders/fig/01-aws-intro-0006.png)
+
+
+To avoid creating multiple security groups, we will all select the Cloud101 Security Group which will have Port 22 (ssh) and Port 80 (HTTP) open. 
+
+![](/cloud101_cloudproviders/fig/01-aws-intro-0007.png)
+
+
+On the Review Instance Launch page, choose Launch.
+
+When prompted for a key pair, select Choose an existing key pair, then select the key pair that you created when getting set up.
+
+Alternatively, you can create a new key pair. Select Create a new key pair, enter a name for the key pair, and then choose Download Key Pair. This is the only chance for you to save the private key file, so be sure to download it. Save the private key file in a safe place. You'll need to provide the name of your key pair when you launch an instance and the corresponding private key each time you connect to the instance.
+
+Caution
+Don't select the Proceed without a key pair option. If you launch your instance without a key pair, then you can't connect to it.
+When you are ready, select the acknowledgement check box, and then choose Launch Instances.
+
+![](/cloud101_cloudproviders/fig/01-aws-intro-0008.png)
+
+A confirmation page lets you know that your instance is launching. Choose View Instances to close the confirmation page and return to the console.
+
+On the Instances screen, you can view the status of the launch. It takes a short time for an instance to launch. When you launch an instance, its initial state is pending. After the instance starts, its state changes to running and it receives a public DNS name. (If the Public DNS (IPv4) column is hidden, choose the Show/Hide icon in the top right corner of the page and then select Public DNS (IPv4).)
+
+It can take a few minutes for the instance to be ready so that you can connect to it. Check that your instance has passed its status checks; you can view this information in the Status Checks column.
+
 
 ### Create a s3 storage bucket
+
+
 
 ### Transferring data from your virtual machine to your storage bucket
 
