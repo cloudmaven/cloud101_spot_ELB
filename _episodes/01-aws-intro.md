@@ -16,8 +16,8 @@ keypoints:
 ---
 
 ### Prerequisites
-[AWS Educate Starter Account](https://www.awseducate.com/Application)
 A 2-factor authentication app (e.g. Authy ) 
+Terminal or bash for Windows
 
 ### Create an IAM user
 For security, you should not log in to your account using root credentials. Anything that you need to do with your AWS services can be achieved by creating an Administrator role through IAM. You only need root access for managing your account plans (upgrades or closing your account)
@@ -53,7 +53,9 @@ On the Choose an Instance Type page, you can select the hardware configuration o
 ![](/cloud101_cloudproviders/fig/01-aws-intro-0004.png)
 
 
-You can also add storage to your virtual machine. We won't be covering this in the workshop, but the directions on how to mount the additional storage to your virtual machine is [here](https://cloudmaven.github.io/documentation/aws_ec2.html#mounting-the-attached-volume). 
+You can also add storage to your virtual machine. We will change the root directory to be 25GB, to account for installation of some packages. 
+
+We won't be covering this in the workshop, but the directions on how to mount the additional storage (other than root) to your virtual machine is [here](https://cloudmaven.github.io/documentation/aws_ec2.html#mounting-the-attached-volume). 
 
 ![](/cloud101_cloudproviders/fig/01-aws-intro-0005.png)
 
@@ -69,11 +71,11 @@ To avoid creating multiple security groups, we will all select the Cloud101 Secu
 
 On the Review Instance Launch page, choose Launch.
 
-When prompted for a key pair, select Choose an existing key pair, then select the key pair that you created when getting set up.
+When prompted for a key pair, select "Create New Key Pair", enter a name for the key pair, and then choose Download Key Pair. 
 
-Alternatively, you can create a new key pair. Select Create a new key pair, enter a name for the key pair, and then choose Download Key Pair. This is the only chance for you to save the private key file, so be sure to download it. Save the private key file in a safe place. You'll need to provide the name of your key pair when you launch an instance and the corresponding private key each time you connect to the instance.
+This is the only chance for you to save the private key file, so be sure to download it. Save the private key file in a safe place. You'll need to provide the name of your key pair when you launch an instance and the corresponding private key each time you connect to the instance.
 
-Caution
+**Caution**
 Don't select the Proceed without a key pair option. If you launch your instance without a key pair, then you can't connect to it.
 When you are ready, select the acknowledgement check box, and then choose Launch Instances.
 
@@ -87,9 +89,50 @@ It can take a few minutes for the instance to be ready so that you can connect t
 
 
 ### Create a s3 storage bucket
+We will now ssh into the virtual machine, install miniconda and install the AWS CLI. 
 
+The two things you need are your private key and your instance DNS or IP address. 
 
+![](/cloud101_cloudproviders/fig/01-aws-intro-0009.png)
 
-### Transferring data from your virtual machine to your storage bucket
+Open your Terminal or Bash Shell. Go to the location of where you downloaded your private key. We will need to change the permissions for the private key. 
+
+```bash
+$ sudo chmod 400 privatekey.pem
+$ ssh -i "privatekey.pem" ubuntu@ec2-35-160-75-232.us-west-2.compute.amazonaws.com
+```
+
+Once you've ssh-ed into your virtual machine, we will download and install miniconda. 
+
+```bash
+$ sudo apt update
+$ wget 'https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh'
+$ bash Miniconda3-latest-Linux-x86_64.sh
+$ source ~/.bashrc
+```
+
+Go through the prompts. Next we will install the AWS-CLI
+
+```bash
+$ pip install --upgrade --user awscli
+```
+
+Now we can configure the CLI. When prompted, enter your Access Key ID and Secret Access Key, Default region name and Default output format (json, text etc.). You can go ahead and just press "Enter" for the latter two. 
+
+```bash
+$ aws configure
+```
+
+Next, we will list all the buckets, create a bucket, download a file from an external s3 bucket and then upload it to your own s3 bucket. 
+
+```bash
+$ aws s3 ls #list buckets
+$ aws s3 mb s3://<bucket-name>  #make bucket
+$ aws s3 ls s3://<bucket-name> #list bucket contents
+$ aws s3 cp s3://cloud101demo/Mean_Apr_ET.geojson . #download a file from a shared bucket
+$ aws s3 sync s3://<bucket-name> s3://cloud101demo --acl public-read #sync your bucket with the cloud101 bucket and allow public read access
+```
+
+More info here: http://docs.aws.amazon.com/cli/latest/userguide/using-s3-commands.html
 
 
