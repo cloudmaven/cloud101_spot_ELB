@@ -59,10 +59,66 @@ $ az login #This will allow you to authenticate your Azure CLI through the brows
 
 You should see something that looks like this:
 ![](/cloud101_cloudproviders/fig/02-azure-intro-0005.png)
+ 
+
+We are going to write a quick bash script to copy all the objects from your AWS s3 bucket to Azure blob storage. The account name and storage access key should be on the Storage Account page on the portal.
+
+Remember that you are creating this file on your virtual machine, so you should use the text editor on your virtual machine. Here, I'll use vim, you can also use pico or nano. 
+
+We'll first create a list of files to copy. Here we'll use cat. Ctrl + C to exit the file. 
+
+```bash
+$ cat > filenames.txt
+Mean_Apr_ET.geojson
+Mean_Aug_ET.geojson
+Mean_Dec_ET.geojson
+Mean_Feb_ET.geojson
+Mean_Jan_ET.geojson
+Mean_Jul_ET.geojson
+Mean_Jun_ET.geojson
+Mean_Mar_ET.geojson
+Mean_May_ET.geojson
+Mean_Nov_ET.geojson
+Mean_Oct_ET.geojson
+Mean_Sep_ET.geojson
+```
+
+```bash
+$ vi blob_copy.sh
+```
+
+This is the script. Edit the configuration with your own parameters. 
+
+```bash
+#!/bin/bash
+# A simple Azure Storage example script
+
+export AZURE_STORAGE_ACCOUNT=<storage_account_name>
+export AZURE_STORAGE_ACCESS_KEY=<storage_account_key>
+
+export container_name=<container_name>
+export AWS_endpoint=<AWS_endpoint_url> 
+
+echo "Creating the container..."
+az storage container create -n $container_name --public-access container
+
+for fn in `cat filenames.txt`; do 
+echo "Uploading the file..."
+az storage blob copy -u $AWS_endpoint/$fn -c $container_name -b $fn
+done 
+
+echo "Listing the blobs..."
+az storage blob list -c $container_name -o table # List the contents of container in table format. Default is json. 
+
+echo "Done"
+```
+
+Exit, change permissions on your script to allow it to run and then run it. 
+```bash
+$ chmod +x blob_copy.sh
+$ bash blob_copy.sh
+```
+
+You should now have something that looks like this:
 
 
-
-
-
-
-## Transferring data from your virtual machine to your storage bucket
