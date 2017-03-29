@@ -21,16 +21,27 @@ keypoints:
 Like for AWS and Azure, we will be deploying a Google Cloud compute engine. We can deplo a GCP compute engine through the console or using Google Cloud Shell. The equivalent in GCP of the AWS or Azure CLI is called the G
 
 ![](/cloud101_cloudproviders/fig/03-gcp-intro-0001.png)
+
 ![](/cloud101_cloudproviders/fig/03-gcp-intro-0002.png)
+
 ![](/cloud101_cloudproviders/fig/03-gcp-intro-0003.png)
+
 ![](/cloud101_cloudproviders/fig/03-gcp-intro-0004.png)
+
 ![](/cloud101_cloudproviders/fig/03-gcp-intro-0005.png)
+
 ![](/cloud101_cloudproviders/fig/03-gcp-intro-0006.png)
+
 ![](/cloud101_cloudproviders/fig/03-gcp-intro-0007.png)
+
 ![](/cloud101_cloudproviders/fig/03-gcp-intro-0008.png)
+
 ![](/cloud101_cloudproviders/fig/03-gcp-intro-0009.png)
+
 ![](/cloud101_cloudproviders/fig/03-gcp-intro-0010.png)
+
 ![](/cloud101_cloudproviders/fig/03-gcp-intro-0011.png)
+
 
 ## Provision Google Cloud Storage
 
