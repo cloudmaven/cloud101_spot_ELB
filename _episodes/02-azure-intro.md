@@ -30,15 +30,13 @@ Virtual machine > Add > Search for "Ubuntu" > Ubuntu 16.04 LTS (long term suppor
 
 You can fill in the relevant information. We are going to go with using a password to log in this time, but it is probably more secure to use ssh-keygen to generate and ssh key in the future. 
 
-![](/cloud101_cloudproviders/fig/02-azure-intro-0003.png)
-
 ![](/cloud101_cloudproviders/fig/02-azure-intro-0003a.png)
 
 Under "Resource Group" choose "Use Existing" and select "uwcloud101". You can leave the location as West US. Click OK. 
 
 You will select the DS1_V2 machine and then click "Select"
 
-![](/cloud101_cloudproviders/fig/01-aws-intro-0004.png)
+![](/cloud101_cloudproviders/fig/02-azure-intro-0004.png)
 
 You can leave the default options for the security settings, but click on Network Security Group (Firewall) to check that Port 22 is open. 
 
@@ -65,15 +63,27 @@ If you click on the newly created Virtual Machine tab in the portal, you can vie
 We will create an Azure storage account through the portal. 
 
 In the portal, click the '+' sign for New > Storage > Storage Account
-We are going to go with a standard disk because it's cheap. We will also use the Resource Group you created when you deployed your virtual machine. It is important to understand the [Data Replication options](https://docs.microsoft.com/en-us/azure/storage/storage-redundancy)
 
+The Deployment model will be "Resource Manager", the disk will be "Standard", we don't need Encrypted Storage for this tutorial and again, we will choose the existing Resource Group "uwcloud101"
+
+![](/cloud101_cloudproviders/fig/02-azure-intro-0009.png)
+
+It is important to understand the [Data Replication options](https://docs.microsoft.com/en-us/azure/storage/storage-redundancy). 
+
+![](/cloud101_cloudproviders/fig/02-azure-intro-0010.png)
+
+## Downloading content to Blob Storage
 
 Now we will ssh into your Azure VM and set up the necessary tools for connecting to blob storage. Similar to what we did with the AWS tutorial -- we will ssh into the virtual machine and download and upload some files. This is necessary for the web frameworks tutorial. 
 
-This time we will ssh using the administrator name, DNS label and password we specified in the Azure VM configuration. 
+This time we will ssh using the administrator name, IP Address and password we specified in the Azure VM configuration. 
+
+![](/cloud101_cloudproviders/fig/02-azure-intro-0011.png)
+
+In your Terminal/Bash Shell:
 
 ```bash
-$ ssh -X -Y amanda@uwcloud101demo.westus.cloudapp.azure.com #substitute amanda and cloud101demo with your own username and DNS label
+$ ssh -X -Y amanda@40.175.685.25 #substitute amanda and IP with your own 
 $ sudo apt update
 $ wget 'https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh'
 $ bash Miniconda3-latest-Linux-x86_64.sh
@@ -89,7 +99,7 @@ $ az login #This will allow you to authenticate your Azure CLI through the brows
 ```
 
 You should see something that looks like this:
-![](/cloud101_cloudproviders/fig/02-azure-intro-0005.png)
+![](/cloud101_cloudproviders/fig/02-azure-intro-0012.png)
  
 
 We are going to write a quick bash script to copy all the objects from your AWS s3 bucket to Azure blob storage. The account name and storage access key should be on the Storage Account page on the portal.
@@ -151,5 +161,4 @@ $ bash blob_copy.sh
 ```
 
 You should now have something that looks like this:
-
-
+![](/cloud101_cloudproviders/fig/02-azure-intro-0013.png)
