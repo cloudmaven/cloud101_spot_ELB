@@ -93,11 +93,10 @@ We will now ssh into the virtual machine, install miniconda and install the AWS 
 
 The two things you need are your private key and your instance DNS or IP address. 
 
-![](/cloud101_cloudproviders/fig/01-aws-intro-0009.png)
-
 Open your Terminal or Bash Shell. Go to the location of where you downloaded your private key. We will need to change the permissions for the private key. 
 
 ```bash
+$ cd ~/Downloads/keys #This is the directory I save my keys in
 $ sudo chmod 400 privatekey.pem
 $ ssh -i "privatekey.pem" ubuntu@ec2-35-160-75-232.us-west-2.compute.amazonaws.com
 ```
