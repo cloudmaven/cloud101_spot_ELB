@@ -20,13 +20,44 @@ keypoints:
 
 *This tutorial was adapted from https://docs.microsoft.com/en-us/azure/virtual-machines/windows/classic/tutorial*
 
+On the top right corner, make sure you have selected cloud.washington.edu as your Active Directory. 
+
+![](/cloud101_cloudproviders/fig/02-azure-intro-0001.png)
+
 Virtual machine > Add > Search for "Ubuntu" > Ubuntu 16.04 LTS (long term support) > Deployment type: Resource Manager
 
-You can fill in the relevant information. We are going to go with using a password to log in this time, but it is probably more secure to use ssh-keygen to generate and ssh key. 
+![](/cloud101_cloudproviders/fig/02-azure-intro-0002.png)
 
-Create a new resource group 
+You can fill in the relevant information. We are going to go with using a password to log in this time, but it is probably more secure to use ssh-keygen to generate and ssh key in the future. 
 
-We are going to go with the default options. 
+![](/cloud101_cloudproviders/fig/02-azure-intro-0003.png)
+
+![](/cloud101_cloudproviders/fig/02-azure-intro-0003a.png)
+
+Under "Resource Group" choose "Use Existing" and select "uwcloud101". You can leave the location as West US. Click OK. 
+
+You will select the DS1_V2 machine and then click "Select"
+
+![](/cloud101_cloudproviders/fig/01-aws-intro-0004.png)
+
+You can leave the default options for the security settings, but click on Network Security Group (Firewall) to check that Port 22 is open. 
+
+![](/cloud101_cloudproviders/fig/02-azure-intro-0005.png)
+
+In the final step, you will see a summary page. Click "OK" to provision your machine. 
+
+![](/cloud101_cloudproviders/fig/02-azure-intro-0006.png)
+
+It may take a while to provision your machine -- you can view the status on the top right corner of the portal by clicking on the bell icon. 
+
+![](/cloud101_cloudproviders/fig/01-aws-intro-0007.png)
+
+Find your newly created Virtual Machine tab in the Portal and click on it view the configuration. You can also search for your VM by clicking on All Resources. 
+
+![](/cloud101_cloudproviders/fig/02-azure-intro-0008.png)
+
+**THIS IS A SHARED RESOURCE GROUP. PLEASE REMEMBER THE NAME OF YOUR APPS AND VIRTUAL MACHINE AND DO NOT MESS AROUND WITH OTHER PEOPLE'S MACHINES!!!**
+
 
 If you click on the newly created Virtual Machine tab in the portal, you can view the configuration. One of the neat things with Azure is that you can specify your own DNS label name. Remember to save your configuration after you have edited it. 
 
