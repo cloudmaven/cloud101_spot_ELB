@@ -48,7 +48,7 @@ In the final step, you will see a summary page. Click "OK" to provision your mac
 
 It may take a while to provision your machine -- you can view the status on the top right corner of the portal by clicking on the bell icon. 
 
-![](/cloud101_cloudproviders/fig/01-aws-intro-0007.png)
+![](/cloud101_cloudproviders/fig/02-azure-intro-0007.png)
 
 Find your newly created Virtual Machine tab in the Portal and click on it view the configuration. You can also search for your VM by clicking on All Resources. 
 
