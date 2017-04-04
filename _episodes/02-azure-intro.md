@@ -54,10 +54,12 @@ Find your newly created Virtual Machine tab in the Portal and click on it view t
 
 ![](/cloud101_cloudproviders/fig/02-azure-intro-0008.png)
 
+
 **THIS IS A SHARED RESOURCE GROUP. PLEASE REMEMBER THE NAME OF YOUR APPS AND VIRTUAL MACHINE AND DO NOT MESS AROUND WITH OTHER PEOPLE'S MACHINES!!!**
 
 
 If you click on the newly created Virtual Machine tab in the portal, you can view the configuration. One of the neat things with Azure is that you can specify your own DNS label name. Remember to save your configuration after you have edited it. 
+
 
 ## Create a blob storage
 We will create an Azure storage account through the portal. 
@@ -71,6 +73,7 @@ The Deployment model will be "Resource Manager", the disk will be "Standard", we
 It is important to understand the [Data Replication options](https://docs.microsoft.com/en-us/azure/storage/storage-redundancy). 
 
 ![](/cloud101_cloudproviders/fig/02-azure-intro-0010.png)
+
 
 ## Downloading content to Blob Storage
 
@@ -99,6 +102,7 @@ $ az login #This will allow you to authenticate your Azure CLI through the brows
 ```
 
 You should see something that looks like this:
+
 ![](/cloud101_cloudproviders/fig/02-azure-intro-0012.png)
  
 
@@ -161,4 +165,6 @@ $ bash blob_copy.sh
 ```
 
 You should now have something that looks like this:
-![](/cloud101_cloudproviders/fig/02-azure-intro-0013.png)
+
+![](/cloud101_cloudproviders/fig/02-azure-intro-0013.png
+
